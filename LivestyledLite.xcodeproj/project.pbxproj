@@ -18,6 +18,15 @@
 		E77EFF4423A696F800E13CF5 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF4323A696F800E13CF5 /* EventModel.swift */; };
 		E77EFF4723A6980600E13CF5 /* eventModels.json in Resources */ = {isa = PBXBuildFile; fileRef = E77EFF4623A6980600E13CF5 /* eventModels.json */; };
 		E77EFF4C23A6BB0200E13CF5 /* LSDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF4B23A6BB0200E13CF5 /* LSDecoder.swift */; };
+		E77EFF4F23A6C47E00E13CF5 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF4E23A6C47E00E13CF5 /* ServiceType.swift */; };
+		E77EFF5223A6C7A500E13CF5 /* eventModels.json in Resources */ = {isa = PBXBuildFile; fileRef = E77EFF4623A6980600E13CF5 /* eventModels.json */; };
+		E77EFF5423A6CA4200E13CF5 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF5323A6CA4200E13CF5 /* EventViewModel.swift */; };
+		E77EFF5823A6D3D200E13CF5 /* Rx+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF5723A6D3D200E13CF5 /* Rx+extention.swift */; };
+		E77EFF5B23A6D61000E13CF5 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF5A23A6D61000E13CF5 /* OptionalType.swift */; };
+		E77EFF5C23A6D8D900E13CF5 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF5023A6C53D00E13CF5 /* MockService.swift */; };
+		E77EFF5E23A6DB1300E13CF5 /* LSDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF4B23A6BB0200E13CF5 /* LSDecoder.swift */; };
+		E77EFF5F23A6DB1F00E13CF5 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF4323A696F800E13CF5 /* EventModel.swift */; };
+		E77EFF6123A7A35900E13CF5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF6023A7A35900E13CF5 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,12 @@
 		E77EFF4323A696F800E13CF5 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		E77EFF4623A6980600E13CF5 /* eventModels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = eventModels.json; sourceTree = "<group>"; };
 		E77EFF4B23A6BB0200E13CF5 /* LSDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSDecoder.swift; sourceTree = "<group>"; };
+		E77EFF4E23A6C47E00E13CF5 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		E77EFF5023A6C53D00E13CF5 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		E77EFF5323A6CA4200E13CF5 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		E77EFF5723A6D3D200E13CF5 /* Rx+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+extention.swift"; sourceTree = "<group>"; };
+		E77EFF5A23A6D61000E13CF5 /* OptionalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalType.swift; sourceTree = "<group>"; };
+		E77EFF6023A7A35900E13CF5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F0BFC400E14D9E68C50624CA /* Pods_LivestyledLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivestyledLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F75F3E93CAC4B0C3ABA7B52E /* Pods-LivestyledLiteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLiteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLiteTests/Pods-LivestyledLiteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F8DA4145EF9CC4E5FECC669F /* Pods-LivestyledLiteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLiteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLiteTests/Pods-LivestyledLiteTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,10 +130,13 @@
 		E77EFF2223A68BA900E13CF5 /* LivestyledLite */ = {
 			isa = PBXGroup;
 			children = (
+				E77EFF4D23A6C19A00E13CF5 /* Api */,
 				E77EFF2323A68BAA00E13CF5 /* AppDelegate.swift */,
 				E77EFF2523A68BAA00E13CF5 /* ViewController.swift */,
 				E77EFF4523A6970D00E13CF5 /* support */,
 				E77EFF4823A6993D00E13CF5 /* model */,
+				E77EFF5523A6CA5100E13CF5 /* ViewModel */,
+				E77EFF5923A6D43B00E13CF5 /* Extension */,
 			);
 			path = LivestyledLite;
 			sourceTree = "<group>";
@@ -151,6 +169,33 @@
 				E77EFF4B23A6BB0200E13CF5 /* LSDecoder.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		E77EFF4D23A6C19A00E13CF5 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				E77EFF4E23A6C47E00E13CF5 /* ServiceType.swift */,
+				E77EFF5023A6C53D00E13CF5 /* MockService.swift */,
+				E77EFF6023A7A35900E13CF5 /* Service.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		E77EFF5523A6CA5100E13CF5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E77EFF5323A6CA4200E13CF5 /* EventViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E77EFF5923A6D43B00E13CF5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E77EFF5723A6D3D200E13CF5 /* Rx+extention.swift */,
+				E77EFF5A23A6D61000E13CF5 /* OptionalType.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +287,7 @@
 			files = (
 				E77EFF2E23A68BB300E13CF5 /* LaunchScreen.storyboard in Resources */,
 				E77EFF2B23A68BB300E13CF5 /* Assets.xcassets in Resources */,
+				E77EFF5223A6C7A500E13CF5 /* eventModels.json in Resources */,
 				E77EFF2923A68BAA00E13CF5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,10 +415,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E77EFF4F23A6C47E00E13CF5 /* ServiceType.swift in Sources */,
 				E77EFF4423A696F800E13CF5 /* EventModel.swift in Sources */,
+				E77EFF5C23A6D8D900E13CF5 /* MockService.swift in Sources */,
+				E77EFF5823A6D3D200E13CF5 /* Rx+extention.swift in Sources */,
 				E77EFF4C23A6BB0200E13CF5 /* LSDecoder.swift in Sources */,
 				E77EFF2623A68BAA00E13CF5 /* ViewController.swift in Sources */,
+				E77EFF5B23A6D61000E13CF5 /* OptionalType.swift in Sources */,
+				E77EFF6123A7A35900E13CF5 /* Service.swift in Sources */,
 				E77EFF2423A68BAA00E13CF5 /* AppDelegate.swift in Sources */,
+				E77EFF5423A6CA4200E13CF5 /* EventViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +433,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E77EFF3923A68BB300E13CF5 /* LivestyledLiteTests.swift in Sources */,
+				E77EFF5F23A6DB1F00E13CF5 /* EventModel.swift in Sources */,
+				E77EFF5E23A6DB1300E13CF5 /* LSDecoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
