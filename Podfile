@@ -7,6 +7,7 @@ target 'LivestyledLite' do
   pod 'RxCocoa', '~> 4.4'
   pod 'Alamofire', '4.7'
   pod 'Kingfisher', '4'
+  pod 'SnapKit', '4.0'
 
   target 'LivestyledLiteTests' do
     inherit! :search_paths

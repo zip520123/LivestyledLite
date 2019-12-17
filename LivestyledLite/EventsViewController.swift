@@ -7,15 +7,34 @@
 //
 
 import UIKit
-
+import SnapKit
 protocol EventsViewControllerDelegate: AnyObject {
     func eventsViewController(eventsViewController: EventsViewController, didSelectEvent: Event)
 }
 class EventsViewController: UIViewController {
+    let tableView = UITableView()
     weak var delegate: EventsViewControllerDelegate?
     
     override func viewDidLoad() {
-        title = "EventsViewController"
+        setupUI()
+        dataBinding()
+    }
+    
+    func setupUI(){
+        title = "Events"
+        view.addSubview(tableView)
+        
+        layoutUI()
+    }
+    
+    func layoutUI(){
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func dataBinding(){
+        
     }
     
     
