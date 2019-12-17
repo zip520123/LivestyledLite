@@ -28,6 +28,8 @@
 		E77EFF6123A7A35900E13CF5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF6023A7A35900E13CF5 /* Service.swift */; };
 		E7BCCB7723A93B4300215FB8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BCCB7623A93B4300215FB8 /* Coordinator.swift */; };
 		E7BCCB7923A93DD800215FB8 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BCCB7823A93DD800215FB8 /* EventsViewController.swift */; };
+		E7BCCB7E23A9518800215FB8 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BCCB7C23A9518800215FB8 /* EventsTableViewCell.swift */; };
+		E7BCCB7F23A9518800215FB8 /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7BCCB7D23A9518800215FB8 /* EventsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		E77EFF6023A7A35900E13CF5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E7BCCB7623A93B4300215FB8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E7BCCB7823A93DD800215FB8 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		E7BCCB7C23A9518800215FB8 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
+		E7BCCB7D23A9518800215FB8 /* EventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		F0BFC400E14D9E68C50624CA /* Pods_LivestyledLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivestyledLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F75F3E93CAC4B0C3ABA7B52E /* Pods-LivestyledLiteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLiteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLiteTests/Pods-LivestyledLiteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F8DA4145EF9CC4E5FECC669F /* Pods-LivestyledLiteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLiteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLiteTests/Pods-LivestyledLiteTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		E77EFF2223A68BA900E13CF5 /* LivestyledLite */ = {
 			isa = PBXGroup;
 			children = (
+				E7BCCB7B23A9516300215FB8 /* Cell */,
 				E7BCCB7823A93DD800215FB8 /* EventsViewController.swift */,
 				E7BCCB7523A93AE900215FB8 /* Coordinator */,
 				E77EFF4D23A6C19A00E13CF5 /* Api */,
@@ -207,6 +212,15 @@
 				E7BCCB7623A93B4300215FB8 /* Coordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		E7BCCB7B23A9516300215FB8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E7BCCB7C23A9518800215FB8 /* EventsTableViewCell.swift */,
+				E7BCCB7D23A9518800215FB8 /* EventsTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7BCCB7F23A9518800215FB8 /* EventsTableViewCell.xib in Resources */,
 				E77EFF2E23A68BB300E13CF5 /* LaunchScreen.storyboard in Resources */,
 				E77EFF2B23A68BB300E13CF5 /* Assets.xcassets in Resources */,
 				E77EFF5223A6C7A500E13CF5 /* eventModels.json in Resources */,
@@ -432,6 +447,7 @@
 				E77EFF4423A696F800E13CF5 /* EventModel.swift in Sources */,
 				E77EFF5C23A6D8D900E13CF5 /* MockService.swift in Sources */,
 				E77EFF5823A6D3D200E13CF5 /* Rx+extention.swift in Sources */,
+				E7BCCB7E23A9518800215FB8 /* EventsTableViewCell.swift in Sources */,
 				E77EFF4C23A6BB0200E13CF5 /* LSDecoder.swift in Sources */,
 				E7BCCB7923A93DD800215FB8 /* EventsViewController.swift in Sources */,
 				E7BCCB7723A93B4300215FB8 /* Coordinator.swift in Sources */,
@@ -604,7 +620,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = "$(SRCROOT)/LivestyledLite/support/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -620,7 +639,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = "$(SRCROOT)/LivestyledLite/support/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -637,7 +659,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = LivestyledLiteTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLiteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -655,7 +681,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = LivestyledLiteTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLiteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
