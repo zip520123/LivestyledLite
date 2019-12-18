@@ -19,7 +19,7 @@ class EventViewModel {
     struct EventViewModelInput {
         let fetchEvents: PublishRelay<Void>
         let fetchNextPageEvents: PublishRelay<Void>
-        
+        let resetLoadingStep: PublishRelay<Void>
     }
     
     // MARK: - Outputs
@@ -33,6 +33,7 @@ class EventViewModel {
         let fetchEvents = PublishRelay<Void>()
         let fetchNextPageEvents = PublishRelay<Void>()
         let shouldBatchMore = BehaviorRelay<Bool>(value: true)
+        let resetLoadingStep = PublishRelay<Void>()
         
         let eventsResponse = fetchEvents.withLatestFrom(shouldBatchMore)
             .filter { $0 == true }.flatMapFirst { _ in
@@ -52,8 +53,12 @@ class EventViewModel {
             .bind(to: fetchEvents)
             .disposed(by: disposeBag)
         
+        resetLoadingStep.subscribe(onNext: { (_) in
+            currentPage.reset()
+            shouldBatchMore.accept(true)
+        }).disposed(by: disposeBag)
         
-        input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents)
+        input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents, resetLoadingStep: resetLoadingStep)
         output = EventViewModelOutput(eventsResult: eventResult)
     }
     

@@ -22,6 +22,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     weak var delegate: EventsViewControllerDelegate?
     let viewModel = EventViewModel()
     
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         setupUI()
@@ -37,6 +38,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.refreshControl = refreshControl
+        
         layoutUI()
     }
     
@@ -47,10 +51,21 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func dataBinding(){
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: {[weak self] (_) in
+            guard let `self` = self else {return}
+            self.events.removeAll()
+            self.tableView.reloadData()
+            
+            self.viewModel.input.resetLoadingStep.acceptAction()
+            self.viewModel.input.fetchEvents.acceptAction()
+            
+        }).disposed(by: disposeBag)
+        
         viewModel.output.eventsResult.drive(onNext:{ [weak self] list in
             guard let `self` = self else {return}
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.events += list
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
         

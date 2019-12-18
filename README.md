@@ -7,6 +7,7 @@
 5. Add tableView.
 6. Implement network request.
 7. Implement pagination.
+8. Add refreshControl, implement refresh function.
 ***
 ### Install
 1. git clone this repo
