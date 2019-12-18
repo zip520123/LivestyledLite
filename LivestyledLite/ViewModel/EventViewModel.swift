@@ -25,6 +25,7 @@ class EventViewModel {
     // MARK: - Outputs
     struct EventViewModelOutput {
         let eventsResult: Driver<[Event]>
+        let errorOutput: Driver<Error>
     }
     
     init(service: ServiceType = Service()){//DI
@@ -37,11 +38,11 @@ class EventViewModel {
         
         let eventsResponse = fetchEvents.withLatestFrom(shouldBatchMore)
             .filter { $0 == true }.flatMapFirst { _ in
-            service.requestEvent(page: currentPage.value)
+            service.requestEvent(page: currentPage.value).materialize()
         }.share()
         
         let eventResult =
-            eventsResponse
+            eventsResponse.elements()
                 .do(onNext: { list in
                     currentPage.nextPage()
                     if list.isEmpty {
@@ -58,8 +59,10 @@ class EventViewModel {
             shouldBatchMore.accept(true)
         }).disposed(by: disposeBag)
         
+        let errorOutput = eventsResponse.errors().asDriverOnErrorJustCompleted()
+        
         input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents, resetLoadingStep: resetLoadingStep)
-        output = EventViewModelOutput(eventsResult: eventResult)
+        output = EventViewModelOutput(eventsResult: eventResult, errorOutput: errorOutput)
     }
     
 }

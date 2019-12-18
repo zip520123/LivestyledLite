@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import NotificationBannerSwift
 protocol EventsViewControllerDelegate: AnyObject {
     func eventsViewController(eventsViewController: EventsViewController, didSelectEvent: Event)
 }
@@ -78,6 +79,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.viewModel.input.fetchNextPageEvents.acceptAction()
                 
             }).disposed(by: disposeBag)
+        
+        viewModel.output.errorOutput.drive(onNext:{[weak self] error in
+            self?.refreshControl.endRefreshing()
+            let banner = NotificationBanner(title: "error", subtitle: error.localizedDescription, style: .danger)
+            banner.show()
+            
+        }).disposed(by: disposeBag)
     }
     
     func requestData(){
