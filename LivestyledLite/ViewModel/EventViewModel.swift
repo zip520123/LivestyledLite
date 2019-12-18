@@ -18,6 +18,7 @@ class EventViewModel {
     // MARK: - Inputs
     struct EventViewModelInput {
         let fetchEvents: PublishRelay<Void>
+        let fetchNextPageEvents: PublishRelay<Void>
         
     }
     
@@ -30,7 +31,11 @@ class EventViewModel {
         
         let currentPage = BehaviorRelay(value: 1)
         let fetchEvents = PublishRelay<Void>()
-        let eventsResponse = fetchEvents.flatMapFirst {
+        let fetchNextPageEvents = PublishRelay<Void>()
+        let shouldBatchMore = BehaviorRelay<Bool>(value: true)
+        
+        let eventsResponse = fetchEvents.withLatestFrom(shouldBatchMore)
+            .filter { $0 == true }.flatMapFirst { _ in
             service.requestEvent(page: currentPage.value)
         }.share()
         
@@ -38,10 +43,17 @@ class EventViewModel {
             eventsResponse
                 .do(onNext: { list in
                     currentPage.nextPage()
-                    
+                    if list.isEmpty {
+                        shouldBatchMore.accept(false)
+                    }
                 }).asDriverOnErrorJustCompleted()
         
-        input = EventViewModelInput(fetchEvents: fetchEvents)
+        fetchNextPageEvents
+            .bind(to: fetchEvents)
+            .disposed(by: disposeBag)
+        
+        
+        input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents)
         output = EventViewModelOutput(eventsResult: eventResult)
     }
     

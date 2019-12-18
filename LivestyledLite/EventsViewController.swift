@@ -54,7 +54,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
         
-        
+        tableView.rx.contentOffset.map { [weak self] (offset) -> Bool in
+            guard let `self` = self else {return false}
+            return offset.y + self.tableView.frame.height + 20.0 > self.tableView.contentSize.height }
+            .distinctUntilChanged()
+            .filter { $0 == true }
+            .subscribe(onNext: { [unowned self] _ in
+                self.viewModel.input.fetchNextPageEvents.acceptAction()
+                
+            }).disposed(by: disposeBag)
     }
     
     func requestData(){
