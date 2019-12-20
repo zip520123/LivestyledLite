@@ -41,14 +41,23 @@ class EventViewModel {
             service.requestEvent(page: currentPage.value).materialize()
         }.share()
         
-        let eventResult =
-            eventsResponse.elements()
-                .do(onNext: { list in
-                    currentPage.nextPage()
-                    if list.isEmpty {
-                        shouldBatchMore.accept(false)
-                    }
-                }).asDriverOnErrorJustCompleted()
+        let dataResult = eventsResponse.elements()
+            .do(onNext: { list in
+                currentPage.nextPage()
+                if list.isEmpty {
+                    shouldBatchMore.accept(false)
+                }
+            }).asDriverOnErrorJustIgnored()
+        
+        //if request fail, return fake data
+        
+        let eventResult = Driver.merge(dataResult, eventsResponse.errors().map( { (error) in
+            let event = Event(id:"", title:"error", image: nil, startDate: Date())
+            
+           return [event]
+        }).asDriverOnErrorJustIgnored())
+        
+        
         
         fetchNextPageEvents
             .bind(to: fetchEvents)
