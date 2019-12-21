@@ -26,7 +26,6 @@ class EventViewModel {
     // MARK: - Outputs
     struct EventViewModelOutput {
         let eventsResult: Driver<[LSEvent]>
-        let errorOutput: Driver<Error>
     }
     
     init(service: ServiceType = Service(), db: DB = (UIApplication.shared.delegate as! AppDelegate).db ){//DI
@@ -46,10 +45,10 @@ class EventViewModel {
         
         let eventsResponse = fetchEvents.withLatestFrom(shouldBatchMore)
             .filter { $0 == true }.withLatestFrom(currentPage).flatMapFirst { page in
-            service.requestEvent(page: page).materialize()
+            service.requestEvent(page: page)
         }.share()
         
-        let dataResult = eventsResponse.elements()
+        let eventResult = eventsResponse
             .do(onNext: { list in
                 currentPage.nextPage()
                 if list.isEmpty {
@@ -57,13 +56,6 @@ class EventViewModel {
                 }
             }).asDriverOnErrorJustIgnored()
         
-        //if request fail, return fake data
-        
-        let eventResult = Driver.merge(dataResult, eventsResponse.errors().map( { (error) in
-            let event = LSEvent(id:"", title:"error", image: nil, startDate: Date())
-            
-           return [event]
-        }).asDriverOnErrorJustIgnored())
         
         fetchNextPageEvents
             .bind(to: fetchEvents)
@@ -74,10 +66,9 @@ class EventViewModel {
             try? db.setEventFavorite(id, isFavorite: isFavorite)
         }).disposed(by: disposeBag)
         
-        let errorOutput = eventsResponse.errors().asDriverOnErrorJustCompleted()
         
         input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents, resetLoadingStep: resetLoadingStep, setEventFavorite: setEventFavorite)
-        output = EventViewModelOutput(eventsResult: eventResult, errorOutput: errorOutput)
+        output = EventViewModelOutput(eventsResult: eventResult)
     }
     
 }

@@ -11,6 +11,7 @@ target 'LivestyledLite' do
   pod 'NotificationBannerSwift', '1.6.3'
   pod 'MarqueeLabel/Swift', '3.1.6'
 
+  pod 'RxReachability', '0.1.5'
 
   target 'LivestyledLiteTests' do
     inherit! :search_paths
