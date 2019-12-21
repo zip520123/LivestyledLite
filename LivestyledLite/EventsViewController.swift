@@ -100,6 +100,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventsTableViewCell
         let event = events[indexPath.row]
         cell.setModel(event)
+        cell.buttonClick = {[weak self] isFavorite in
+            self?.viewModel.input.setEventFavorite.accept((id: event.id, isFavorite: !isFavorite))
+        }
+        
         return cell
     }
 

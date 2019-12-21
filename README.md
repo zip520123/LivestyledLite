@@ -11,6 +11,8 @@
 9. Add offline error handler.
 10. if request fail, return fake data.
 11. Add db interface, unit test.
+12. Add notification test.
+13. Add button set favorite function.
 ***
 ### Install
 require Xcode Version 9.4.1 (9F2000) swift 4.1
