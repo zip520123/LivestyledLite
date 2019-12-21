@@ -12,9 +12,16 @@ protocol DB {
     func readEventFavorite(eventId: String) -> Bool
 }
 
+struct setEventFavoriteResult {
+    let eventId: String
+    let isFavorite: Bool
+}
+
 struct UserDefaultsDB : DB {
     func setEventFavorite(_ eventId: String, isFavorite: Bool) throws {
         UserDefaults.standard.set(isFavorite, forKey: eventId)
+        
+        NotificationCenter.default.post(name: .didChangeEventState, object: setEventFavoriteResult(eventId: eventId, isFavorite: isFavorite))
     }
     func readEventFavorite(eventId: String) -> Bool {
         if let eventId = UserDefaults.standard.value(forKey: eventId) as? Bool {
@@ -23,4 +30,5 @@ struct UserDefaultsDB : DB {
         return false
 
     }
+
 }

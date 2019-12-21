@@ -83,8 +83,29 @@ class LivestyledLiteTests: XCTestCase {
     }
     
     func testUnknowEventFavorite() throws {
-        let db = UserDefaultsDB()
         XCTAssert( db.readEventFavorite(eventId: "unknowEvent") == false)
+    }
+    
+    func testSetEventNotification() {
+        let testUnfavoriteEvent = LSEvent(id: "testEventUnfavorite", title: "testEventUnfavorite", image: nil, startDate: Date())
+        let viewModel = EventViewModel(db: db)
+        let expect = expectation(description: "notifacation")
+        
+        let localDisposeBag = DisposeBag()
+
+        NotificationCenter.default.rx.notification(.didChangeEventState)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (notification) in
+                guard let result = notification.object as? setEventFavoriteResult else {return}
+                if (result.eventId == testUnfavoriteEvent.id) {
+                    expect.fulfill()
+                    XCTAssert(result.isFavorite == true)
+                }
+            }).disposed(by: localDisposeBag)
+        
+        viewModel.input.setEventFavorite.accept((testUnfavoriteEvent.id, isFavorite: true))
+
+        wait(for: [expect], timeout: 0.1)
         
     }
     

@@ -10,6 +10,7 @@
 		1039C3973A65B320EB18CB82 /* Pods_LivestyledLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BFC400E14D9E68C50624CA /* Pods_LivestyledLite.framework */; };
 		C2160353067ED7F2B587E33F /* Pods_LivestyledLiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C02793644CEEDD30FB5412 /* Pods_LivestyledLiteTests.framework */; };
 		E73E191C23AE350A00278C32 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E191B23AE350A00278C32 /* DB.swift */; };
+		E73E191E23AE515200278C32 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E191D23AE515200278C32 /* Notification+Extension.swift */; };
 		E77EFF2423A68BAA00E13CF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF2323A68BAA00E13CF5 /* AppDelegate.swift */; };
 		E77EFF2923A68BAA00E13CF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77EFF2723A68BAA00E13CF5 /* Main.storyboard */; };
 		E77EFF2B23A68BB300E13CF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77EFF2A23A68BB300E13CF5 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		61C02793644CEEDD30FB5412 /* Pods_LivestyledLiteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivestyledLiteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00871CC35733D9B9620AF16 /* Pods-LivestyledLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLite/Pods-LivestyledLite.debug.xcconfig"; sourceTree = "<group>"; };
 		E73E191B23AE350A00278C32 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
+		E73E191D23AE515200278C32 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		E77EFF2023A68BA900E13CF5 /* LivestyledLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivestyledLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77EFF2323A68BAA00E13CF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E77EFF2823A68BAA00E13CF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				E77EFF5723A6D3D200E13CF5 /* Rx+extention.swift */,
 				E77EFF5A23A6D61000E13CF5 /* OptionalType.swift */,
+				E73E191D23AE515200278C32 /* Notification+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				E77EFF4F23A6C47E00E13CF5 /* ServiceType.swift in Sources */,
 				E77EFF4423A696F800E13CF5 /* EventModel.swift in Sources */,
 				E77EFF5C23A6D8D900E13CF5 /* MockService.swift in Sources */,
+				E73E191E23AE515200278C32 /* Notification+Extension.swift in Sources */,
 				E77EFF5823A6D3D200E13CF5 /* Rx+extention.swift in Sources */,
 				E7BCCB7E23A9518800215FB8 /* EventsTableViewCell.swift in Sources */,
 				E77EFF4C23A6BB0200E13CF5 /* LSDecoder.swift in Sources */,
