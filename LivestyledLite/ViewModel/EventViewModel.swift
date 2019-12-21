@@ -38,9 +38,15 @@ class EventViewModel {
         let resetLoadingStep = PublishRelay<Void>()
         let setEventFavorite = PublishRelay<(id: String, isFavorite: Bool)>()
         
+        resetLoadingStep.subscribe(onNext: { (_) in
+            currentPage.reset()
+            shouldBatchMore.accept(true)
+            fetchEvents.acceptAction()
+        }).disposed(by: disposeBag)
+        
         let eventsResponse = fetchEvents.withLatestFrom(shouldBatchMore)
-            .filter { $0 == true }.flatMapFirst { _ in
-            service.requestEvent(page: currentPage.value).materialize()
+            .filter { $0 == true }.withLatestFrom(currentPage).flatMapFirst { page in
+            service.requestEvent(page: page).materialize()
         }.share()
         
         let dataResult = eventsResponse.elements()
@@ -59,16 +65,10 @@ class EventViewModel {
            return [event]
         }).asDriverOnErrorJustIgnored())
         
-        
-        
         fetchNextPageEvents
             .bind(to: fetchEvents)
             .disposed(by: disposeBag)
         
-        resetLoadingStep.subscribe(onNext: { (_) in
-            currentPage.reset()
-            shouldBatchMore.accept(true)
-        }).disposed(by: disposeBag)
         
         setEventFavorite.subscribe(onNext: { (id, isFavorite) in
             try? db.setEventFavorite(id, isFavorite: isFavorite)

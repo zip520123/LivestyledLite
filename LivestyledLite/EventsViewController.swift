@@ -56,9 +56,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             guard let `self` = self else {return}
             self.events.removeAll()
             self.tableView.reloadData()
-            
             self.viewModel.input.resetLoadingStep.acceptAction()
-            self.viewModel.input.fetchEvents.acceptAction()
             
         }).disposed(by: disposeBag)
         
