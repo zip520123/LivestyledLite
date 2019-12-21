@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol ServiceType {
-    func requestEvent(page: Int) -> Observable<[Event]>
+    func requestEvent(page: Int) -> Observable<[LSEvent]>
 }

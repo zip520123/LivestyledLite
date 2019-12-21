@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1039C3973A65B320EB18CB82 /* Pods_LivestyledLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BFC400E14D9E68C50624CA /* Pods_LivestyledLite.framework */; };
 		C2160353067ED7F2B587E33F /* Pods_LivestyledLiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C02793644CEEDD30FB5412 /* Pods_LivestyledLiteTests.framework */; };
+		E73E191C23AE350A00278C32 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73E191B23AE350A00278C32 /* DB.swift */; };
 		E77EFF2423A68BAA00E13CF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77EFF2323A68BAA00E13CF5 /* AppDelegate.swift */; };
 		E77EFF2923A68BAA00E13CF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77EFF2723A68BAA00E13CF5 /* Main.storyboard */; };
 		E77EFF2B23A68BB300E13CF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77EFF2A23A68BB300E13CF5 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		305E48E420306DCF5B25A05D /* Pods-LivestyledLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLite.release.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLite/Pods-LivestyledLite.release.xcconfig"; sourceTree = "<group>"; };
 		61C02793644CEEDD30FB5412 /* Pods_LivestyledLiteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivestyledLiteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00871CC35733D9B9620AF16 /* Pods-LivestyledLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivestyledLite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LivestyledLite/Pods-LivestyledLite.debug.xcconfig"; sourceTree = "<group>"; };
+		E73E191B23AE350A00278C32 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		E77EFF2023A68BA900E13CF5 /* LivestyledLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivestyledLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77EFF2323A68BAA00E13CF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E77EFF2823A68BAA00E13CF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E73E191A23AE34D700278C32 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				E73E191B23AE350A00278C32 /* DB.swift */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
 		E77EFF1723A68BA900E13CF5 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		E77EFF2223A68BA900E13CF5 /* LivestyledLite */ = {
 			isa = PBXGroup;
 			children = (
+				E73E191A23AE34D700278C32 /* db */,
 				E7BCCB7B23A9516300215FB8 /* Cell */,
 				E7BCCB7823A93DD800215FB8 /* EventsViewController.swift */,
 				E7BCCB7523A93AE900215FB8 /* Coordinator */,
@@ -447,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73E191C23AE350A00278C32 /* DB.swift in Sources */,
 				E77EFF4F23A6C47E00E13CF5 /* ServiceType.swift in Sources */,
 				E77EFF4423A696F800E13CF5 /* EventModel.swift in Sources */,
 				E77EFF5C23A6D8D900E13CF5 /* MockService.swift in Sources */,
@@ -624,7 +636,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = "$(SRCROOT)/LivestyledLite/support/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -640,7 +655,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = "$(SRCROOT)/LivestyledLite/support/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -657,7 +675,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = LivestyledLiteTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLiteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -675,7 +697,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3653B62ALA;
 				INFOPLIST_FILE = LivestyledLiteTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lin.LivestyledLiteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

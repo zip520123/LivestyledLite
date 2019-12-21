@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Event : Decodable {
+struct LSEvent : Decodable {
     let id : String
     let title : String?
     let image : String?

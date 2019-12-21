@@ -20,21 +20,23 @@ class EventViewModel {
         let fetchEvents: PublishRelay<Void>
         let fetchNextPageEvents: PublishRelay<Void>
         let resetLoadingStep: PublishRelay<Void>
+        let setEventFavorite: PublishRelay<(id: String, isFavorite: Bool)>
     }
     
     // MARK: - Outputs
     struct EventViewModelOutput {
-        let eventsResult: Driver<[Event]>
+        let eventsResult: Driver<[LSEvent]>
         let errorOutput: Driver<Error>
     }
     
-    init(service: ServiceType = Service()){//DI
+    init(service: ServiceType = Service(), db: DB = (UIApplication.shared.delegate as! AppDelegate).db ){//DI
         
         let currentPage = BehaviorRelay(value: 1)
         let fetchEvents = PublishRelay<Void>()
         let fetchNextPageEvents = PublishRelay<Void>()
         let shouldBatchMore = BehaviorRelay<Bool>(value: true)
         let resetLoadingStep = PublishRelay<Void>()
+        let setEventFavorite = PublishRelay<(id: String, isFavorite: Bool)>()
         
         let eventsResponse = fetchEvents.withLatestFrom(shouldBatchMore)
             .filter { $0 == true }.flatMapFirst { _ in
@@ -52,7 +54,7 @@ class EventViewModel {
         //if request fail, return fake data
         
         let eventResult = Driver.merge(dataResult, eventsResponse.errors().map( { (error) in
-            let event = Event(id:"", title:"error", image: nil, startDate: Date())
+            let event = LSEvent(id:"", title:"error", image: nil, startDate: Date())
             
            return [event]
         }).asDriverOnErrorJustIgnored())
@@ -68,9 +70,13 @@ class EventViewModel {
             shouldBatchMore.accept(true)
         }).disposed(by: disposeBag)
         
+        setEventFavorite.subscribe(onNext: { (id, isFavorite) in
+            try? db.setEventFavorite(id, isFavorite: isFavorite)
+        }).disposed(by: disposeBag)
+        
         let errorOutput = eventsResponse.errors().asDriverOnErrorJustCompleted()
         
-        input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents, resetLoadingStep: resetLoadingStep)
+        input = EventViewModelInput(fetchEvents: fetchEvents, fetchNextPageEvents: fetchNextPageEvents, resetLoadingStep: resetLoadingStep, setEventFavorite: setEventFavorite)
         output = EventViewModelOutput(eventsResult: eventResult, errorOutput: errorOutput)
     }
     

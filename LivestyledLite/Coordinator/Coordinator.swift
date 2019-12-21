@@ -29,7 +29,7 @@ final class RootCoordinator: NSObject, CoordinatorProtocol {
 
 // MARK: - Source Related Methods
 extension RootCoordinator: EventsViewControllerDelegate {
-    func eventsViewController(eventsViewController: EventsViewController, didSelectEvent: Event) {
+    func eventsViewController(eventsViewController: EventsViewController, didSelectEvent: LSEvent) {
         
     }
     

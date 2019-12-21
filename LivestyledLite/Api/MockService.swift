@@ -13,9 +13,9 @@ import RxCocoa
 
 struct MockService: ServiceType {
     var testString : String = ""
-    func requestEvent(page: Int) -> Observable<[Event]> {
+    func requestEvent(page: Int) -> Observable<[LSEvent]> {
         let data = testString.data(using: .utf8)!
-        let model = try! LSDecoder().decode([Event].self, from: data)
+        let model = try! LSDecoder().decode([LSEvent].self, from: data)
         return Observable.just(model)
     }
     

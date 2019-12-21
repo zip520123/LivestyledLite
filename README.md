@@ -9,7 +9,8 @@
 7. Implement pagination.
 8. Add refreshControl, implement refresh function.
 9. Add offline error handler.
-10. if request fail, return fake data
+10. if request fail, return fake data.
+11. Add db interface, unit test.
 ***
 ### Install
 require Xcode Version 9.4.1 (9F2000) swift 4.1

@@ -26,7 +26,7 @@ class EventsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    func setModel(_ event: Event){
+    func setModel(_ event: LSEvent){
         if let url = URL(string: event.image ?? "") {
             profileImageView.kf.setImage(with: url, options: [.transition(.fade(0.2)),
                                                               .cacheOriginalImage,

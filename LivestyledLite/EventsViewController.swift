@@ -12,13 +12,13 @@ import RxSwift
 import RxCocoa
 import NotificationBannerSwift
 protocol EventsViewControllerDelegate: AnyObject {
-    func eventsViewController(eventsViewController: EventsViewController, didSelectEvent: Event)
+    func eventsViewController(eventsViewController: EventsViewController, didSelectEvent: LSEvent)
 }
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     let disposeBag = DisposeBag()
     
     let tableView = UITableView()
-    var events = [Event]()
+    var events = [LSEvent]()
     
     weak var delegate: EventsViewControllerDelegate?
     let viewModel = EventViewModel()

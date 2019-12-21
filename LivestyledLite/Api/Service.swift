@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 struct Service : ServiceType {
 
-    func requestEvent(page: Int) -> Observable<[Event]> {
+    func requestEvent(page: Int) -> Observable<[LSEvent]> {
 //        http://my-json-server.typicode.com/livestyled/mock-api/events?_page=1
         var urlComponent = URLComponents()
         urlComponent.scheme = "http"
@@ -25,8 +25,8 @@ struct Service : ServiceType {
             .rx.response(request: request)
             .retry(3)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
-            .map({ (response, data) -> [Event] in
-                if let model = try? LSDecoder().decode([Event].self, from: data) {
+            .map({ (response, data) -> [LSEvent] in
+                if let model = try? LSDecoder().decode([LSEvent].self, from: data) {
                     return model
                 }
                 return []

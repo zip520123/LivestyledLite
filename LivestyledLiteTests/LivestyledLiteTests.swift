@@ -13,10 +13,22 @@ import RxSwift
 
 class LivestyledLiteTests: XCTestCase {
     let disposeBag = DisposeBag()
+    let db = (UIApplication.shared.delegate as! AppDelegate).db
+    
+    override func setUp() {
+        super.setUp()
+        
+        //remove all keys in userDefault
+        if let appDomain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        }
+        
+    }
+    
     func testEventModelDecode() throws {
         let data = try readString(from: "eventModels.json").data(using: .utf8)!
         
-        let model = try! LSDecoder().decode([Event].self, from: data)
+        let model = try! LSDecoder().decode([LSEvent].self, from: data)
 
         XCTAssert(model.count == 10)
         XCTAssert(model[0].id == "5d4aab8ba707c58f2522ddd7")
@@ -48,7 +60,31 @@ class LivestyledLiteTests: XCTestCase {
         
     }
     
-    func testOfflineCache() throws {
+    func testSetEventFavorite() throws {
+        
+        let viewModel = EventViewModel(db: db)
+        let testEvent = LSEvent(id: "testEvent", title: "testEvent", image: nil, startDate: Date())
+        XCTAssert( db.readEventFavorite(eventId: testEvent.id) == false)
+        viewModel.input.setEventFavorite.accept((testEvent.id, isFavorite: true))
+        XCTAssert( db.readEventFavorite(eventId: testEvent.id) == true)
+        
+    }
+    
+    func testSetEventUnfavorite() throws {
+
+        let testUnfavoriteEvent = LSEvent(id: "testEventUnfavorite", title: "testEventUnfavorite", image: nil, startDate: Date())
+        let viewModel = EventViewModel(db: db)
+        viewModel.input.setEventFavorite.accept((testUnfavoriteEvent.id, isFavorite: true))
+        XCTAssert( db.readEventFavorite(eventId: testUnfavoriteEvent.id) == true)
+        
+        viewModel.input.setEventFavorite.accept((testUnfavoriteEvent.id, isFavorite: false))
+        XCTAssert( db.readEventFavorite(eventId: testUnfavoriteEvent.id) == false)
+        
+    }
+    
+    func testUnknowEventFavorite() throws {
+        let db = UserDefaultsDB()
+        XCTAssert( db.readEventFavorite(eventId: "unknowEvent") == false)
         
     }
     
